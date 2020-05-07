@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-12 text-center">
+        Select a State
+    </div>
+    <div class="select-drop-down">
+        <select name="cities" id="" (change)="fetchCities($event)">
+            <option (click)="fetchCities(item)" *ngFor="let item of stateList;let i = index" value="{{item}}">{{item}}
+            </option>
+        </select>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="cityList.length > 0">
+    <table class="table table-striped col-md-4 table-scroll">
+        <thead>
+            <tr>
+                <th [ngStyle]="{'width': '40px'}">#</th>
+                <th>Cities under {{selectedState}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cityList; index as i">
+                <th [ngStyle]="{'width': '40px'}">{{ i + 1 }}</th>
+                <td>
+                    {{ item.City }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="col-md-8">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+            <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"
+                [label]="m.label">
+            </agm-marker>
+        </agm-map>
+    </div>
+</div>
+
+<div class="text-center" *ngIf="noCityMsg">
+    No City Available
+</div>

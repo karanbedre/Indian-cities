@@ -1,0 +1,33 @@
+.select-drop-down {
+    margin: 0 auto;
+}
+
+.table-scroll {
+    border: 1px solid #ddd;
+
+    thead,
+    tbody tr,
+    tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    thead tr {
+        th {
+            vertical-align: middle;
+        }
+    }
+
+    tbody {
+        display: block;
+        height: 80vh;
+        overflow-y: overlay;
+
+        td {
+            border-top: none !important;
+            word-break: break-word;
+            word-break: break-all;
+        }
+    }
+}
