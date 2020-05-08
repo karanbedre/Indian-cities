@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CityViewServiceService } from '../city-view-service/city-view-service.service';
 import { HttpService } from '../http-service/http-service.service';
-import { promise } from 'protractor';
+
 
 @Component({
   selector: 'app-city-view',
@@ -30,6 +30,8 @@ export class CityViewComponent implements OnInit {
       res.filter(ele => array.push(ele.State));
       array = [...new Set(array)];
       this.stateList = array.sort();
+    }, err => {
+      console.log(err);
     });
   }
 
@@ -43,6 +45,8 @@ export class CityViewComponent implements OnInit {
       } else {
         this.noCityMsg = true;
       }
+    }, err => {
+      console.log(err);
     })
   }
 
@@ -52,10 +56,10 @@ export class CityViewComponent implements OnInit {
       this.https.geocodeAddress(ele.City)
         .subscribe((location) => {
           this.markers.push(location)
+        }, err => {
+          console.log(err);
         });
     })
-
-
   }
 }
 
